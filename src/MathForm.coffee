@@ -18,7 +18,8 @@
 
 class MathForm
 	# The individual calls (@render(), @subdomain(), @path(), etc.) are prefered.
-	constructor: (@formPlugin = "mathquill", @loadDomain = "cdn.", @loadPath="master", @loaded=no) ->
+	# However, make sure to pass @$.
+	constructor: (@$, @formPlugin = "mathquill", @loadDomain = "cdn.", @loadPath="master", @loaded=no) ->
 	render: (@formPlugin) -> @
 	subdomain: (@loadDomain) -> @
 	path: (@loadPath) -> @
@@ -28,12 +29,12 @@ class MathForm
 			cb @ if cb
 		if @formPlugin is "mathQuill"
 			css = "https://#{@loadDomain}rawgit.com/CodeLenny/MathForm/#{@loadPath}/lib/mathquill.css"
-			$("head").append $("<link rel='stylesheet' type='text/css' href='#{css}'>")
-			$.getScript("https://"+@loadDomain+"rawgit.com/CodeLenny/MathForm/"+@loadPath+"/lib/mathquill.min.js").done =>
+			@$("head").append @$("<link rel='stylesheet' type='text/css' href='#{css}'>")
+			@$.getScript("https://"+@loadDomain+"rawgit.com/CodeLenny/MathForm/"+@loadPath+"/lib/mathquill.min.js").done =>
 				@loaded = yes
 				cb @ if cb
 		else if @formPlugin is "mathdox"
-			$.loadScript("http://mathdox.org/formulaeditor/main.js").done =>
+			@$.loadScript("http://mathdox.org/formulaeditor/main.js").done =>
 				@loaded = yes
 				cb @ if cb
 	# Quick loader to bind to any element containing labelText in the input name.
@@ -41,18 +42,18 @@ class MathForm
 	# Example: an input with the name "[Math] Test" would be bound with @google("[Math]")
 	google: (labelText) ->
 		@load =>
-			$(".ss-q-title").each (index, el) =>
-				if $(el).text().indexOf(labelText) > -1
-					textbox = $('#'+$(el).parent("label.ss-q-item-label").attr("for"))
+			@$(".ss-q-title").each (index, el) =>
+				if @$(el).text().indexOf(labelText) > -1
+					textbox = @$('#'+@$(el).parent("label.ss-q-item-label").attr("for"))
 					form = @mathify(textbox)
 					textbox.before(form)
 	# Generate a form for the math input to be inserted.
 	# Argument textbox should be a JQuery object to call .val(math) on when the user is done.
 	mathify: (textbox) ->
-		form = $("<div>")
+		form = @$("<div>")
 		if @formPlugin is "mathQuill"
-			math = $("<span>").mathquill("editable")
-			save = $("<button>").text("Save").click =>
+			math = @$("<span>").mathquill("editable")
+			save = @$("<button>").text("Save").click =>
 				textbox.val math.mathquill().mathquill('latex')
 			form.append(math).append(save)
 		else if @formPlugin is "mathdox"
