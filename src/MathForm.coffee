@@ -60,6 +60,18 @@ class MathForm
 				MathForm loaded, using #{@formPlugin} as the render engine.
 				MathForm #{version}
 			"""
+	checkVersion: ->
+		check = @$(".mathFormVersionCheck")
+		return if check.length < 0
+		if check.text() is @loadPath
+			@$(".mathFormVersionCheck").addClass("bg-success").text """
+				Congrats! You are running the latest version of MathForm.
+			"""
+		else
+			@$(".mathFormVersionCheck").addClass("bg-danger").text """
+				Warning: You are running an outdated version of MathForm.
+				Please replace your bookmarklet.
+			"""
 	# Generate a form for the math input to be inserted.
 	# Argument textbox should be a JQuery object to call .val(math) on when the user is done.
 	mathify: (textbox) ->

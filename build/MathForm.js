@@ -85,6 +85,19 @@
       })(this));
     };
 
+    MathForm.prototype.checkVersion = function() {
+      var check;
+      check = this.$(".mathFormVersionCheck");
+      if (check.length < 0) {
+        return;
+      }
+      if (check.text() === this.loadPath) {
+        return this.$(".mathFormVersionCheck").addClass("bg-success").text("Congrats! You are running the latest version of MathForm.");
+      } else {
+        return this.$(".mathFormVersionCheck").addClass("bg-danger").text("Warning: You are running an outdated version of MathForm.\nPlease replace your bookmarklet.");
+      }
+    };
+
     MathForm.prototype.mathify = function(textbox) {
       var form, math, save;
       form = this.$("<div>");
