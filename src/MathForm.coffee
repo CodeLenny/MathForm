@@ -61,8 +61,10 @@ class MathForm
 		form = @$("<div>")
 		if @formPlugin is "mathQuill"
 			math = @$("<span>").mathquill("editable")
-			save = @$("<button>").text("Save").click =>
+			save = @$("<button>").text("Save").click (e) =>
+				e.preventDefault()
 				textbox.val math.mathquill().mathquill('latex')
+				false
 			form.append(math).append(save)
 		else if @formPlugin is "mathdox"
 			alert("Unsupported Plugin.  This is an error in the link used to activate the math library.")

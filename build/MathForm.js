@@ -88,8 +88,10 @@
       if (this.formPlugin === "mathQuill") {
         math = this.$("<span>").mathquill("editable");
         save = this.$("<button>").text("Save").click((function(_this) {
-          return function() {
-            return textbox.val(math.mathquill().mathquill('latex'));
+          return function(e) {
+            e.preventDefault();
+            textbox.val(math.mathquill().mathquill('latex'));
+            return false;
           };
         })(this));
         form.append(math).append(save);
