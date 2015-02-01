@@ -63,7 +63,7 @@ class MathForm
 			math = @$("<span>").mathquill("editable")
 			save = @$("<button>").text("Save").click (e) =>
 				e.preventDefault()
-				textbox.val math.mathquill().mathquill('latex')
+				textbox.val math.mathquill('latex')
 				false
 			form.append(math).append(save)
 		else if @formPlugin is "mathdox"

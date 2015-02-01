@@ -90,7 +90,7 @@
         save = this.$("<button>").text("Save").click((function(_this) {
           return function(e) {
             e.preventDefault();
-            textbox.val(math.mathquill().mathquill('latex'));
+            textbox.val(math.mathquill('latex'));
             return false;
           };
         })(this));
