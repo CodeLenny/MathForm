@@ -92,9 +92,9 @@
         return;
       }
       if (check.text() === this.loadPath) {
-        return this.$(".mathFormVersionCheck").addClass("bg-success").text("Congrats! You are running the latest version of MathForm.");
+        return this.$(".mathFormVersionCheckResults").addClass("bg-success").text("Congrats! You are running the latest version of MathForm.");
       } else {
-        return this.$(".mathFormVersionCheck").addClass("bg-danger").text("Warning: You are running an outdated version of MathForm.\nPlease replace your bookmarklet.");
+        return this.$(".mathFormVersionCheckResults").addClass("bg-danger").text("Warning: You are running an outdated version of MathForm.\nPlease replace your bookmarklet.");
       }
     };
 
