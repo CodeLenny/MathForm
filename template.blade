@@ -1,0 +1,39 @@
+!!! 5
+- var bootstrapTheme = "superhero"
+html
+	head
+		title MathForm
+		block styles
+			link(href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css", rel="stylesheet")
+			link(href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css", rel="stylesheet")
+			link(href="//maxcdn.bootstrapcdn.com/bootswatch/3.2.0/"+bootstrapTheme+"/bootstrap.min.css", rel="stylesheet")
+		meta(name="viewport", content="width=device-width, initial-scale=1")
+	body(style="padding-top: 70px;")
+		nav.navbar.navbar-default.navbar-fixed-top
+			.container-fluid
+				.navbar-header
+					button.navbar-toggle.collapsed(type="button", data-toggle="collapse", data-target="#mainNavCollapse")
+						span.sr-only Toggle Navigation
+						span.icon-bar
+						span.icon-bar
+						span.icon-bar
+					a.navbar-brand(href="#") MathForm
+				block nav(section)
+					#mainNavCollapse.collapse.navbar-collapse
+						function link(s, name, url)
+							- var activeClass = section === s ? "active" : ""
+							li(class=activeClass)
+								a(href=url)= name
+								- if(section===s)
+									span.sr-only (current)
+						ul.nav.navbar-nav.navbar-left
+							call link("intro", "Intro", "/MathForm/")
+							call link("demo", "Demo", "/MathForm/demo/")
+							call link("usage", "Usage", "/MathForm/usage/")
+							call link("docs", "Documentation", "/MathForm/docs/")
+						ul.nav.navbar-nav.navbar-right
+							call link(null, "Made by Ryan Leonard", "https://ryanleonard.us/")
+		block body
+		block scripts
+			script(src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js")
+			script(src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js")
