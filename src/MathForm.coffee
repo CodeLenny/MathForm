@@ -55,6 +55,11 @@ class MathForm
 					textbox = @$('#'+@$(el).parent("label.ss-q-item-label").attr("for"))
 					form = @mathify(textbox)
 					textbox.before(form)
+			version = if @developerMode or @loadDomain is "" then "Developer Version.  Please use a standard version for production!" else "Version #{@loadPath}."
+			@$(".ss-form-desc").after $("<b>").text """
+				MathForm loaded, using #{@formPlugin} as the render engine.
+				MathForm #{version}
+			"""
 	# Generate a form for the math input to be inserted.
 	# Argument textbox should be a JQuery object to call .val(math) on when the user is done.
 	mathify: (textbox) ->

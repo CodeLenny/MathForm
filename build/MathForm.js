@@ -70,7 +70,8 @@
     MathForm.prototype.google = function(labelText) {
       return this.load((function(_this) {
         return function() {
-          return _this.$(".ss-q-title").each(function(index, el) {
+          var version;
+          _this.$(".ss-q-title").each(function(index, el) {
             var form, textbox;
             if (_this.$(el).text().indexOf(labelText) > -1) {
               textbox = _this.$('#' + _this.$(el).parent("label.ss-q-item-label").attr("for"));
@@ -78,6 +79,8 @@
               return textbox.before(form);
             }
           });
+          version = _this.developerMode || _this.loadDomain === "" ? "Developer Version.  Please use a standard version for production!" : "Version " + _this.loadPath + ".";
+          return _this.$(".ss-form-desc").after($("<b>").text("MathForm loaded, using " + _this.formPlugin + " as the render engine.\nMathForm " + version));
         };
       })(this));
     };
