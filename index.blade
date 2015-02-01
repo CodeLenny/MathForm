@@ -14,7 +14,7 @@ append block body
 				.text-center
 					a.btn.btn-primary.btn-lg(title="MathForm", href='javascript:(function(e,a,g,h,f,c,b,d){if(!(f=e.jQuery)||g>f.fn.jquery||h(f)){c=a.createElement("script");c.type="text/javascript";c.src="//ajax.googleapis.com/ajax/libs/jquery/"+g+"/jquery.min.js";c.onload=c.onreadystatechange=function(){if(!b&&(!(d=this.readyState)||d=="loaded"||d=="complete")){h((f=e.jQuery).noConflict(1),b=1);f(c).remove()}};a.documentElement.childNodes[0].appendChild(c)}})(window,document,"1.11.2",function($,L){var inDev = false; var commit = "'+commit+'"; var subdomain = inDev ? "" : "cdn."; var path = inDev ? "master" : commit; var loaded = function(){window.mathForm = new MathForm($); window.mathForm.render("mathQuill").subdomain(subdomain).path(path).google("[Math]")}; $.getScript("https://"+subdomain+"rawgit.com/CodeLenny/MathForm/"+path+"/build/MathForm.js").done(loaded); });') MathFormify!
 				p Drag this link to your bookmarks, and use it on Google Forms setup to use MathForm.
-				.text-center
+				.text-center.hidden-md.hidden-lg.hidden-xl
 					a.btn.btn-default(href="/MathForm/usage/") More Instructions
 			.col-sm-8.col-md-4
 				.panel
@@ -23,10 +23,20 @@ append block body
 						<span Type
 						<i a/b
 						span .  Then tab to get out of the denominator.
-				.text-center
+				.text-center.hidden-md.hidden-lg.hidden-xl
 					a.btn.btn-default(href="/MathForm/docs/") All Documentation
 			.col-sm-12.col-md-5
 				h4 Use on your own form
 				p Follow these instructions to start using MathForm in Google Forms.
+				.text-center.hidden-md.hidden-lg.hidden-xl
+					a.btn.btn-default(href="/MathForm/usage/#formsetup") Usage Instructions
+		.row.hidden-sm.hidden-xs
+			.col-md-3
+				.text-center
+					a.btn.btn-default(href="/MathForm/usage/") More Instructions
+			.col-md-4
+				.text-center
+					a.btn.btn-default(href="/MathForm/docs/") All Documentation
+			.col-md-5
 				.text-center
 					a.btn.btn-default(href="/MathForm/usage/#formsetup") Usage Instructions
