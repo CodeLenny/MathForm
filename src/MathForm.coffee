@@ -19,10 +19,11 @@
 class MathForm
 	# The individual calls (@render(), @subdomain(), @path(), etc.) are prefered.
 	# However, make sure to pass @$.
-	constructor: (@$, @formPlugin = "mathquill", @loadDomain = "cdn.", @loadPath="master", @loaded=no) ->
+	constructor: (@$, @formPlugin = "mathquill", @loadDomain = "cdn.", @loadPath="master", @loaded=no, @developerMode=no) ->
 	render: (@formPlugin) -> @
 	subdomain: (@loadDomain) -> @
 	path: (@loadPath) -> @
+	devel: -> @developerMode = true; @
 	# Used internally to make sure all required scripts are loaded before binding to elements.
 	load: (cb) ->
 		if @loaded
@@ -34,7 +35,8 @@ class MathForm
 			tempjQuery = window.jQuery
 			window.$ = @$
 			window.jQuery = @$
-			@$.getScript("https://"+@loadDomain+"rawgit.com/CodeLenny/MathForm/"+@loadPath+"/lib/mathquill.min.js").done =>
+			ext = if @developerMode then ".js" else ".min.js"
+			@$.getScript("https://"+@loadDomain+"rawgit.com/CodeLenny/MathForm/"+@loadPath+"/lib/mathquill#{ext}").done =>
 				@loaded = yes
 				cb @ if cb
 				#window.$ = temp
