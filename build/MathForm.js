@@ -42,9 +42,8 @@
           return function() {
             _this.loaded = true;
             if (cb) {
-              cb(_this);
+              return cb(_this);
             }
-            return window.$ = temp;
           };
         })(this));
       } else if (this.formPlugin === "mathdox") {

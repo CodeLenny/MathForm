@@ -35,7 +35,7 @@ class MathForm
 			@$.getScript("https://"+@loadDomain+"rawgit.com/CodeLenny/MathForm/"+@loadPath+"/lib/mathquill.min.js").done =>
 				@loaded = yes
 				cb @ if cb
-				window.$ = temp
+				#window.$ = temp
 		else if @formPlugin is "mathdox"
 			@$.loadScript("http://mathdox.org/formulaeditor/main.js").done =>
 				@loaded = yes
