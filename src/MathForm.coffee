@@ -64,11 +64,11 @@ class MathForm
 		check = @$(".mathFormVersionCheck")
 		return if check.length < 0
 		if check.text() is @loadPath
-			@$(".mathFormVersionCheckResults").addClass("bg-success").text """
+			@$(".mathFormVersionCheckResults").removeClass("bg-info").addClass("bg-success").text """
 				Congrats! You are running the latest version of MathForm.
 			"""
 		else
-			@$(".mathFormVersionCheckResults").addClass("bg-danger").text """
+			@$(".mathFormVersionCheckResults").removeClass("bg-info").addClass("bg-danger").text """
 				Warning: You are running an outdated version of MathForm.
 				Please replace your bookmarklet.
 			"""
