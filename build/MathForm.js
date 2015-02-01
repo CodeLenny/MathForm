@@ -3,7 +3,8 @@
   var MathForm;
 
   MathForm = (function() {
-    function MathForm(formPlugin, loadDomain, loadPath, loaded) {
+    function MathForm($, formPlugin, loadDomain, loadPath, loaded) {
+      this.$ = $;
       this.formPlugin = formPlugin != null ? formPlugin : "mathquill";
       this.loadDomain = loadDomain != null ? loadDomain : "cdn.";
       this.loadPath = loadPath != null ? loadPath : "master";
@@ -34,8 +35,8 @@
       }
       if (this.formPlugin === "mathQuill") {
         css = "https://" + this.loadDomain + "rawgit.com/CodeLenny/MathForm/" + this.loadPath + "/lib/mathquill.css";
-        $("head").append($("<link rel='stylesheet' type='text/css' href='" + css + "'>"));
-        return $.getScript("https://" + this.loadDomain + "rawgit.com/CodeLenny/MathForm/" + this.loadPath + "/lib/mathquill.min.js").done((function(_this) {
+        this.$("head").append(this.$("<link rel='stylesheet' type='text/css' href='" + css + "'>"));
+        return this.$.getScript("https://" + this.loadDomain + "rawgit.com/CodeLenny/MathForm/" + this.loadPath + "/lib/mathquill.min.js").done((function(_this) {
           return function() {
             _this.loaded = true;
             if (cb) {
@@ -44,7 +45,7 @@
           };
         })(this));
       } else if (this.formPlugin === "mathdox") {
-        return $.loadScript("http://mathdox.org/formulaeditor/main.js").done((function(_this) {
+        return this.$.loadScript("http://mathdox.org/formulaeditor/main.js").done((function(_this) {
           return function() {
             _this.loaded = true;
             if (cb) {
@@ -58,10 +59,10 @@
     MathForm.prototype.google = function(labelText) {
       return this.load((function(_this) {
         return function() {
-          return $(".ss-q-title").each(function(index, el) {
+          return _this.$(".ss-q-title").each(function(index, el) {
             var form, textbox;
-            if ($(el).text().indexOf(labelText) > -1) {
-              textbox = $('#' + $(el).parent("label.ss-q-item-label").attr("for"));
+            if (_this.$(el).text().indexOf(labelText) > -1) {
+              textbox = _this.$('#' + _this.$(el).parent("label.ss-q-item-label").attr("for"));
               form = _this.mathify(textbox);
               return textbox.before(form);
             }
@@ -72,10 +73,10 @@
 
     MathForm.prototype.mathify = function(textbox) {
       var form, math, save;
-      form = $("<div>");
+      form = this.$("<div>");
       if (this.formPlugin === "mathQuill") {
-        math = $("<span>").mathquill("editable");
-        save = $("<button>").text("Save").click((function(_this) {
+        math = this.$("<span>").mathquill("editable");
+        save = this.$("<button>").text("Save").click((function(_this) {
           return function() {
             return textbox.val(math.mathquill().mathquill('latex'));
           };
