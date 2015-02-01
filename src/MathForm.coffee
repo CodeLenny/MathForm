@@ -30,9 +30,12 @@ class MathForm
 		if @formPlugin is "mathQuill"
 			css = "https://#{@loadDomain}rawgit.com/CodeLenny/MathForm/#{@loadPath}/lib/mathquill.css"
 			@$("head").append @$("<link rel='stylesheet' type='text/css' href='#{css}'>")
+			temp = window.$
+			window.$ = @$
 			@$.getScript("https://"+@loadDomain+"rawgit.com/CodeLenny/MathForm/"+@loadPath+"/lib/mathquill.min.js").done =>
 				@loaded = yes
 				cb @ if cb
+				window.$ = temp
 		else if @formPlugin is "mathdox"
 			@$.loadScript("http://mathdox.org/formulaeditor/main.js").done =>
 				@loaded = yes

@@ -27,7 +27,7 @@
     };
 
     MathForm.prototype.load = function(cb) {
-      var css;
+      var css, temp;
       if (this.loaded) {
         if (cb) {
           cb(this);
@@ -36,12 +36,15 @@
       if (this.formPlugin === "mathQuill") {
         css = "https://" + this.loadDomain + "rawgit.com/CodeLenny/MathForm/" + this.loadPath + "/lib/mathquill.css";
         this.$("head").append(this.$("<link rel='stylesheet' type='text/css' href='" + css + "'>"));
+        temp = window.$;
+        window.$ = this.$;
         return this.$.getScript("https://" + this.loadDomain + "rawgit.com/CodeLenny/MathForm/" + this.loadPath + "/lib/mathquill.min.js").done((function(_this) {
           return function() {
             _this.loaded = true;
             if (cb) {
-              return cb(_this);
+              cb(_this);
             }
+            return window.$ = temp;
           };
         })(this));
       } else if (this.formPlugin === "mathdox") {
