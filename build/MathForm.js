@@ -3,12 +3,13 @@
   var MathForm;
 
   MathForm = (function() {
-    function MathForm($, formPlugin, loadDomain, loadPath, loaded) {
+    function MathForm($, formPlugin, loadDomain, loadPath, loaded, developerMode) {
       this.$ = $;
       this.formPlugin = formPlugin != null ? formPlugin : "mathquill";
       this.loadDomain = loadDomain != null ? loadDomain : "cdn.";
       this.loadPath = loadPath != null ? loadPath : "master";
       this.loaded = loaded != null ? loaded : false;
+      this.developerMode = developerMode != null ? developerMode : false;
     }
 
     MathForm.prototype.render = function(formPlugin) {
@@ -26,8 +27,13 @@
       return this;
     };
 
+    MathForm.prototype.devel = function() {
+      this.developerMode = true;
+      return this;
+    };
+
     MathForm.prototype.load = function(cb) {
-      var css, temp, tempjQuery;
+      var css, ext, temp, tempjQuery;
       if (this.loaded) {
         if (cb) {
           cb(this);
@@ -40,7 +46,8 @@
         tempjQuery = window.jQuery;
         window.$ = this.$;
         window.jQuery = this.$;
-        return this.$.getScript("https://" + this.loadDomain + "rawgit.com/CodeLenny/MathForm/" + this.loadPath + "/lib/mathquill.min.js").done((function(_this) {
+        ext = this.developerMode ? ".js" : ".min.js";
+        return this.$.getScript("https://" + this.loadDomain + "rawgit.com/CodeLenny/MathForm/" + this.loadPath + ("/lib/mathquill" + ext)).done((function(_this) {
           return function() {
             _this.loaded = true;
             if (cb) {
