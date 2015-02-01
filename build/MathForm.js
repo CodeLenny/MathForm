@@ -87,6 +87,7 @@
       form = this.$("<div>");
       if (this.formPlugin === "mathQuill") {
         math = this.$("<span>").mathquill("editable");
+        math.mathquill('latex', textbox.val());
         save = this.$("<button>").text("Save").click((function(_this) {
           return function(e) {
             e.preventDefault();
