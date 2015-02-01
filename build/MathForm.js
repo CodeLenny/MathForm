@@ -27,7 +27,7 @@
     };
 
     MathForm.prototype.load = function(cb) {
-      var css, temp;
+      var css, temp, tempjQuery;
       if (this.loaded) {
         if (cb) {
           cb(this);
@@ -37,7 +37,9 @@
         css = "https://" + this.loadDomain + "rawgit.com/CodeLenny/MathForm/" + this.loadPath + "/lib/mathquill.css";
         this.$("head").append(this.$("<link rel='stylesheet' type='text/css' href='" + css + "'>"));
         temp = window.$;
+        tempjQuery = window.jQuery;
         window.$ = this.$;
+        window.jQuery = this.$;
         return this.$.getScript("https://" + this.loadDomain + "rawgit.com/CodeLenny/MathForm/" + this.loadPath + "/lib/mathquill.min.js").done((function(_this) {
           return function() {
             _this.loaded = true;
