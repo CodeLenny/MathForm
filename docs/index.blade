@@ -1,0 +1,58 @@
+include "../template"
+render block nav("docs")
+append block styles
+	:stylus
+		body
+		  position relative
+append block body
+	.container
+		.page-header
+			h1
+				span MathForm
+				<span.small Documentation
+		p
+			| The following is documentation for the math operations you can preform
+			| with&nbsp;
+			a(href="http://mathquill.com/") MathQuill
+			| &nbsp;and&nbsp;
+			a(href="http://mathdox.org/formulaeditor/") MathDox
+			| .  Please see the&nbsp;
+			a(href="/MathForm/usage/") usage section
+			| for documentation about running MathForm.
+		.col-sm-3.col-md-2.scrollingNav
+			ul.nav.nav-pills.nav-stacked
+				function link(name, target)
+					li
+						a(href=target)= name
+				call link("Addition", "plus")
+				call link("Subtraction", "minus")
+				call link("Multiplication", "times")
+				call link("Division", "frac")
+				call link("Exponents and Superscript", "exp")
+				call link("Square Root", "sqrt")
+				call link("Subscript", "subscript")
+		.col-sm-9.col-md-10
+			function section(name, target, text, result, desc)
+				.panel.panel-default
+					.panel-heading
+						h3.panel-header
+							a(href=target) #
+							<span= name
+					.panel-body
+						.row
+							.col-xs-6= text
+							.col-xs-6.mathquill-editable= result
+						p= desc
+					.panel-footer
+						span #{target} LaTeX: #{result} creates
+						<span.mathquill-embedded-latex= result
+			call section("Addition", "plus", "1+2", "1+2", "Use a normal plus sign.")
+			call section("Subtraction", "minus", "1-2", "1-2", "Use a normal minus sign/dash.")
+			call section("Multiplication", "times", "1*2", "1\cdot2", "An asterisk (shift-8 on a US keyoard) produces a center dot.")
+			call section("Division", "frac", "1/2", "\frac{1}{2}", "A forward slash creates a fractional result.  Use tab in the denominator to return to normal text.")
+			call section("Exponents and Superscript", "exp", "1^2", "1^2", "A caret (shift-6 on US keyboards) produces an exponent.  Use a tab in the superscript to return to normal text.")
+			call section("Square Root", "sqrt", "\sqrt 2", "\sqrt{2}", "Type command \sqrt followed by a space to create a square-root symbol.  Type the contents, then a tab to return to normal text.")
+			call section("Subscript", "subscript", "1_2", "1_2", "An underscore (shift-dash on US keyboards) produces subscripts.  Use tab in the subscript to return to normal text.")
+append block scripts
+	:coffeescript
+		$('body').scrollspy({ target: '.scrollingNav' })
