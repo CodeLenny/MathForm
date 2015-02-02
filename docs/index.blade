@@ -24,7 +24,7 @@ append block body
 			ul.nav.nav-pills.nav-stacked
 				function link(name, target)
 					li
-						a(href=target)= name
+						a(href='#'+target)= name
 				call link("Addition", "plus")
 				call link("Subtraction", "minus")
 				call link("Multiplication", "times")
