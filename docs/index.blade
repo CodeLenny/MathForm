@@ -1,6 +1,7 @@
 include "../template"
 render block nav("docs")
 append block styles
+	style(rel="stylesheet", type="text/css", href="https://cdn.rawgit.com/CodeLenny/MathForm/master/lib/mathquill.css")
 	:stylus
 		body
 		  position relative
@@ -55,6 +56,6 @@ append block body
 			call section("Square Root", "sqrt", "\sqrt 2", "\sqrt{2}", "Type command \sqrt followed by a space to create a square-root symbol.  Type the contents, then a tab to return to normal text.")
 			call section("Subscript", "subscript", "1_2", "1_2", "An underscore (shift-dash on US keyboards) produces subscripts.  Use tab in the subscript to return to normal text.")
 append block scripts
-	script(src="https://cdn.rawgit.com/CodeLenny/MathForm/master/lib/mathquill.css")
+	script(src="https://cdn.rawgit.com/CodeLenny/MathForm/master/lib/mathquill.js")
 	:coffeescript
 		$('body').scrollspy({ target: '.scrollingNav' })
