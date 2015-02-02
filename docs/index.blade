@@ -41,19 +41,19 @@ append block body
 							<span= name
 					.panel-body
 						.row
-							.col-xs-6! text
-							.col-xs-6.mathquill-editable!= result
+							.col-xs-6 !{text}
+							.col-xs-6.mathquill-editable !{result}
 						p= desc
 					.panel-footer
 						code !{target}
 						span LaTeX: !{result} creates
-						<span.mathquill-embedded-latex!= result
+						<span.mathquill-embedded-latex !{result}
 			call section("Addition", "plus", "1+2", "1+2", "Use a normal plus sign.")
 			call section("Subtraction", "minus", "1-2", "1-2", "Use a normal minus sign/dash.")
-			call section("Multiplication", "times", "1*2", "1\cdot2", "An asterisk (shift-8 on a US keyoard) produces a center dot.")
-			call section("Division", "frac", "1/2", "\frac{1}{2}", "A forward slash creates a fractional result.  Use tab in the denominator to return to normal text.")
+			call section("Multiplication", "times", "1*2", '1\\cdot2', "An asterisk (shift-8 on a US keyoard) produces a center dot.")
+			call section("Division", "frac", "1/2", '\\frac{1}{2}', "A forward slash creates a fractional result.  Use tab in the denominator to return to normal text.")
 			call section("Exponents and Superscript", "exp", "1^2", "1^2", "A caret (shift-6 on US keyboards) produces an exponent.  Use a tab in the superscript to return to normal text.")
-			call section("Square Root", "sqrt", "\sqrt 2", "\sqrt{2}", "Type command \sqrt followed by a space to create a square-root symbol.  Type the contents, then a tab to return to normal text.")
+			call section("Square Root", "sqrt", "\sqrt 2", '\\sqrt{2}', "Type command \sqrt followed by a space to create a square-root symbol.  Type the contents, then a tab to return to normal text.")
 			call section("Subscript", "subscript", "1_2", "1_2", "An underscore (shift-dash on US keyboards) produces subscripts.  Use tab in the subscript to return to normal text.")
 append block scripts
 	script(src="https://cdn.rawgit.com/CodeLenny/MathForm/master/lib/mathquill.js")
