@@ -40,12 +40,12 @@ append block body
 							<span= name
 					.panel-body
 						.row
-							.col-xs-6= text
-							.col-xs-6.mathquill-editable= result
+							.col-xs-6! text
+							.col-xs-6.mathquill-editable! result
 						p= desc
 					.panel-footer
-						code #{target}
-						span LaTeX: #{result} creates
+						code !{target}
+						span LaTeX: !{result} creates
 						<span.mathquill-embedded-latex= result
 			call section("Addition", "plus", "1+2", "1+2", "Use a normal plus sign.")
 			call section("Subtraction", "minus", "1-2", "1-2", "Use a normal minus sign/dash.")
