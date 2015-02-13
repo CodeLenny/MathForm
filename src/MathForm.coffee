@@ -71,9 +71,9 @@ class MathForm
 			style: "-webkit-user-select: none;"
 			id: ":r#{id}"
 		text = @$("<div />").addClass("goog-menuitem-content")
-			.attr style, "-webkit-user-select: none;"
+			.attr "style", "-webkit-user-select: none;"
 			.text name
-			click cb
+			.click cb
 			.appendTo item
 		return item
 	googleEditorCreateMath: =>

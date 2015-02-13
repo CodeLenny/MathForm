@@ -103,8 +103,7 @@
         style: "-webkit-user-select: none;",
         id: ":r" + id
       });
-      text = this.$("<div />").addClass("goog-menuitem-content").attr(style, "-webkit-user-select: none;").text(name);
-      click(cb).appendTo(item);
+      text = this.$("<div />").addClass("goog-menuitem-content").attr("style", "-webkit-user-select: none;").text(name).click(cb).appendTo(item);
       return item;
     };
 
