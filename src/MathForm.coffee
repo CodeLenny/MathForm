@@ -50,7 +50,7 @@ class MathForm
 	# Example: an input with the name "[Math] Test" would be bound with @google("[Math]")
 	google: (labelText) ->
 		@load =>
-			if window.location.pathname.indexof("viewform") > -1
+			if window.location.pathname.indexOf("viewform") > -1
 				@$(".ss-q-title").each (index, el) =>
 					if @$(el).text().indexOf(labelText) > -1
 						textbox = @$('#'+@$(el).parent("label.ss-q-item-label").attr("for"))

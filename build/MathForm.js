@@ -75,7 +75,7 @@
       return this.load((function(_this) {
         return function() {
           var version;
-          if (window.location.pathname.indexof("viewform") > -1) {
+          if (window.location.pathname.indexOf("viewform") > -1) {
             _this.$(".ss-q-title").each(function(index, el) {
               var form, textbox;
               if (_this.$(el).text().indexOf(labelText) > -1) {
