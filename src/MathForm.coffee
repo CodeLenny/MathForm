@@ -64,7 +64,7 @@ class MathForm
 			@googleEditor(labelText)
 	# Loads the plugin into a Google Form for editing.
 	googleEditor: (labelText) ->
-		@$("body").on("click", ".goog-inline-block.goog-flat-menu-button-caption", @googleDropdownClick)
+		@$("body").on("click", ".goog-inline-block.goog-flat-menu-button-caption", @googleEditDropdownClick)
 	googleEditorItem: (id, name, cb) ->
 		item = @$("<div />").addClass("goog-menuitem").attr
 			role: "menuitem"

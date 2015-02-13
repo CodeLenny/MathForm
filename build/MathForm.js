@@ -93,7 +93,7 @@
     };
 
     MathForm.prototype.googleEditor = function(labelText) {
-      return this.$("body").on("click", ".goog-inline-block.goog-flat-menu-button-caption", this.googleDropdownClick);
+      return this.$("body").on("click", ".goog-inline-block.goog-flat-menu-button-caption", this.googleEditDropdownClick);
     };
 
     MathForm.prototype.googleEditorItem = function(id, name, cb) {
