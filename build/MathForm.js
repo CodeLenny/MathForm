@@ -75,16 +75,18 @@
       return this.load((function(_this) {
         return function() {
           var version;
-          _this.$(".ss-q-title").each(function(index, el) {
-            var form, textbox;
-            if (_this.$(el).text().indexOf(labelText) > -1) {
-              textbox = _this.$('#' + _this.$(el).parent("label.ss-q-item-label").attr("for"));
-              form = _this.mathify(textbox);
-              return textbox.before(form);
-            }
-          });
-          version = _this.developerMode || _this.loadDomain === "" ? "Developer Version.  Please use a standard version for production!" : "Version " + _this.loadPath + ".";
-          _this.$(".ss-form-desc").after($("<b>").text("MathForm loaded, using " + _this.formPlugin + " as the render engine.\nMathForm " + version));
+          if (window.location.pathname.indexof("viewform") > -1) {
+            _this.$(".ss-q-title").each(function(index, el) {
+              var form, textbox;
+              if (_this.$(el).text().indexOf(labelText) > -1) {
+                textbox = _this.$('#' + _this.$(el).parent("label.ss-q-item-label").attr("for"));
+                form = _this.mathify(textbox);
+                return textbox.before(form);
+              }
+            });
+            version = _this.developerMode || _this.loadDomain === "" ? "Developer Version.  Please use a standard version for production!" : "Version " + _this.loadPath + ".";
+            _this.$(".ss-form-desc").after($("<b>").text("MathForm loaded, using " + _this.formPlugin + " as the render engine.\nMathForm " + version));
+          }
           return _this.googleEditor(labelText);
         };
       })(this));

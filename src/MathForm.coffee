@@ -50,16 +50,17 @@ class MathForm
 	# Example: an input with the name "[Math] Test" would be bound with @google("[Math]")
 	google: (labelText) ->
 		@load =>
-			@$(".ss-q-title").each (index, el) =>
-				if @$(el).text().indexOf(labelText) > -1
-					textbox = @$('#'+@$(el).parent("label.ss-q-item-label").attr("for"))
-					form = @mathify(textbox)
-					textbox.before(form)
-			version = if @developerMode or @loadDomain is "" then "Developer Version.  Please use a standard version for production!" else "Version #{@loadPath}."
-			@$(".ss-form-desc").after $("<b>").text """
-				MathForm loaded, using #{@formPlugin} as the render engine.
-				MathForm #{version}
-			"""
+			if window.location.pathname.indexof("viewform") > -1
+				@$(".ss-q-title").each (index, el) =>
+					if @$(el).text().indexOf(labelText) > -1
+						textbox = @$('#'+@$(el).parent("label.ss-q-item-label").attr("for"))
+						form = @mathify(textbox)
+						textbox.before(form)
+				version = if @developerMode or @loadDomain is "" then "Developer Version.  Please use a standard version for production!" else "Version #{@loadPath}."
+				@$(".ss-form-desc").after $("<b>").text """
+					MathForm loaded, using #{@formPlugin} as the render engine.
+					MathForm #{version}
+				"""
 			@googleEditor(labelText)
 	# Loads the plugin into a Google Form for editing.
 	googleEditor: (labelText) ->
