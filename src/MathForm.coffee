@@ -60,6 +60,36 @@ class MathForm
 				MathForm loaded, using #{@formPlugin} as the render engine.
 				MathForm #{version}
 			"""
+			@googleEditor(labelText)
+	# Loads the plugin into a Google Form for editing.
+	googleEditor: (labelText) ->
+		@$("body").on("click", ".goog-inline-block.goog-flat-menu-button-caption", @googleDropdownClick)
+	googleEditorItem: (id, name, cb) ->
+		item = @$("<div />").addClass("goog-menuitem").attr
+			role: "menuitem"
+			style: "-webkit-user-select: none;"
+			id: ":r#{id}"
+		div class="goog-menuitem-content" style="-webkit-user-select: none;">Paragraph text</div>
+		text = @$("<div />").addClass("goog-menuitem-content")
+			.attr style, "-webkit-user-select: none;"
+			.text name
+			click cb
+			.appendTo item
+		return item
+	googleEditorCreateMath: =>
+		name = @$(".ss-formwidget-container-editor #:fk.fw_tf")
+		if not name.val().indexOf(labelText) > -1
+			name.val labelText + " " + name.val()
+	googleEditorCreateEmbeddedMath: =>
+		name = @$(".ss-formwidget-container-editor #:fk.fw_tf")
+		if not name.val().indexOf("[MathSentance]") > -1
+			name.val "[MathSentance] " + name.val()
+	googleEditorDropdownClick: =>
+		@$(".goog-menu.goog-menu-vertical[aria-haspopup='true'] [id^=':r']").remove()
+		menu = @$(".goog-menu.goog-menu-vertical[aria-haspopup='true']")
+		math = @googleEditorItem("1", "Math", @googleEditorCreateMath)
+		embedMath = @googleEditorItem("2", "Math Enabled Text", @googleEditorCreateEmbededMath)
+		menu.append(math).append(embedMath)
 	checkVersion: ->
 		check = @$(".mathFormVersionCheck")
 		return if check.length < 0
