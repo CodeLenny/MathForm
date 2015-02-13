@@ -69,7 +69,6 @@ class MathForm
 			role: "menuitem"
 			style: "-webkit-user-select: none;"
 			id: ":r#{id}"
-		div class="goog-menuitem-content" style="-webkit-user-select: none;">Paragraph text</div>
 		text = @$("<div />").addClass("goog-menuitem-content")
 			.attr style, "-webkit-user-select: none;"
 			.text name
